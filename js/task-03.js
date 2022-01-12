@@ -17,13 +17,18 @@ const images = [
     alt: "Group of Horses Running",
   },
 ];
-const gallery = document.querySelector("#gallery");
-
-const createEl = (items) => {
-  return items
-    .map(({ url, alt }) => {
-      return `<li><img src = "${url}" alt = "${alt} width = "250px" height = "250"></li>`;
-    })
-    .join("");
+const gallery = document.querySelector(".gallery");
+const createGallery = function (items = []) {
+  let htmlImg = "";
+  for (let index = 0; index < items.length; index += 1) {
+    htmlImg +=
+      "<li><img src = " +
+      items[index].url +
+      "alt = " +
+      items[index].alt +
+      "></li>";
+  }
+  return htmlImg;
 };
-gallery.insertAdjacentElement("afterbegin", createEl(images));
+console.log(createGallery(images));
+gallery.insertAdjacentHTML("beforeend", createGallery(images));
